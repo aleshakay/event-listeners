@@ -38,28 +38,43 @@ const pies = [
   ];
 
   const printToDom = (toPrint, divId) => {
-      document.getElementById(divId).innerHTML += toPrint
+      document.getElementById(divId).innerHTML = toPrint
   }
 
   const pieBuilder = (piesArray) => {
+      let domString = ''
     for (let i = 0; i < piesArray.length; i++) {
         const pie = piesArray[i]
-        const domString = `
+         domString += `
         <div class="card">
             <h2>${pie.name}</h2>
             <img src=${pie.imageUrl} alt='Image of ${pie.name}' />
         </div>
         `
-        printToDom(domString, 'pie-zone')
     }
+    printToDom(domString, 'pie-zone')
   }
 
-document.getElementById('my-button').addEventListener('click', () => {
-    console.log('🥟')
+// document.getElementById('my-button').addEventListener('click', () => {
+//     console.log('🥟')
+// })
+
+document.getElementById('michael').addEventListener('click', (e) =>{
+    //figure out who the instructor is for the button we click
+    console.log('monkey-butt')
+    const instructor = e.target.id
+    //only get zoees's pies for the list of all the pies
+    const selectedPies = []
+    
+    for (i = 0; i < pies.length; i++){
+        const pie = pies[i]
+        if (pie.instructor === instructor){
+            selectedPies.push(pie)
+        }
+
+    }
+    //pass small list of pies back into the pie builder
+    pieBuilder(selectedPies)
 })
 
-  pieBuilder(pies)
-    
-  
-
-  loopOfPies(arrayOfPies)
+ // pieBuilder(pies)
